@@ -5,7 +5,7 @@ classdef Logger < handle
     % MATLAB Central File Exchange. Retrieved January 7, 2021.
     
     properties(Access = protected)
-        logger;
+        LoggerInstance;
         LogFile;
     end
     
@@ -21,8 +21,8 @@ classdef Logger < handle
                 throw(Exception.ArgumentException('pathToLogFile', 'char'))
             end
             
-            persistent localObj;
-            if isempty(localObj) || ~isvalid(localObj)
+            persistent localLoggerInstance;
+            if isempty(localLoggerInstance) || ~isvalid(localLoggerInstance)
                 localObj = Logging.Logger(pathToLogFile);
             end
             obj = localObj;
